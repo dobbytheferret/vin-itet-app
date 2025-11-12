@@ -19,22 +19,16 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     
-    - name: Download gradle wrapper jar
-      run: |
-        mkdir -p gradle/wrapper
-        curl -L https://services.gradle.org/distributions/gradle-8.2-bin.zip -o gradle-8.2-bin.zip
-        unzip gradle-8.2-bin.zip
-        find gradle-8.2 -name "gradle-wrapper.jar" -exec cp {} gradle/wrapper/gradle-wrapper.jar \;
-        rm -rf gradle-8.2 gradle-8.2-bin.zip
-    
-    - name: Make gradlew executable
-      run: chmod +x gradlew
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.2
     
     - name: Build with Gradle
-      run: ./gradlew build
+      run: gradle build
     
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: gradle assembleDebug
     
     - name: Upload APK to Artifacts
       uses: actions/upload-artifact@v4
