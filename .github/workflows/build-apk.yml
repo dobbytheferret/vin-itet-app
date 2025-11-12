@@ -23,8 +23,9 @@ jobs:
       run: |
         mkdir -p gradle/wrapper
         curl -L https://services.gradle.org/distributions/gradle-8.2-bin.zip -o gradle-8.2-bin.zip
-        unzip -p gradle-8.2-bin.zip gradle-8.2/lib/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
-        rm gradle-8.2-bin.zip
+        unzip gradle-8.2-bin.zip
+        find gradle-8.2 -name "gradle-wrapper.jar" -exec cp {} gradle/wrapper/gradle-wrapper.jar \;
+        rm -rf gradle-8.2 gradle-8.2-bin.zip
     
     - name: Make gradlew executable
       run: chmod +x gradlew
