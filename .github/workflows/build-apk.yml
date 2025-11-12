@@ -22,9 +22,9 @@ jobs:
     - name: Download gradle wrapper jar
       run: |
         mkdir -p gradle/wrapper
-        curl -L https://github.com/gradle/gradle/releases/download/v8.2.0/gradle-8.2-wrapper-only.zip -o gradle-wrapper.zip
-        unzip -p gradle-wrapper.zip gradle-8.2/gradle/wrapper/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
-        rm gradle-wrapper.zip
+        curl -L https://services.gradle.org/distributions/gradle-8.2-bin.zip -o gradle-8.2-bin.zip
+        unzip -p gradle-8.2-bin.zip gradle-8.2/lib/gradle-wrapper.jar > gradle/wrapper/gradle-wrapper.jar
+        rm gradle-8.2-bin.zip
     
     - name: Make gradlew executable
       run: chmod +x gradlew
