@@ -179,6 +179,6 @@ fi
 #
 # See the "fine differences" section of https://sh.wikipedia.org/wiki/Shellwords
 # or the as-written bash manual https://www.gnu.org/software/bash/manual/html_node/Word-Expansion.html
-eval "set -- $( printf '%s\n' "$@" | sed ' s / [^/] /\\&/g; $!s/$/ /; s/^/ "/ ; $s/"$/ "/ ' | tr '\n' ' ' )"
+set -- "$@" "org.gradle.wrapper.GradleWrapperMain" "$@"
 
-eval "$JAVACMD" "$@"
+exec "$JAVACMD" "$@"
